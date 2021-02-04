@@ -11,5 +11,11 @@ module.exports = {
   // ],
 
   testEnvironment: 'node',
-  testMatch: ['**/tests/**/*.test.js'],
+  transform: {
+    '.+\\.ts$': 'ts-jest',
+  },
+  moduleNameMapper: {
+    '@/(.*)': '<rootDir>/src/$1',
+  },
+  testMatch: ['**/*.test.ts'],
 }

@@ -1,6 +1,5 @@
 node_modules
 dist
 coverage
-src/public
 public
 *.scss
