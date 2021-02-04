@@ -4,6 +4,9 @@
     "project": "./tsconfig.json"
   },
   "parser": "@typescript-eslint/parser",
+  "env": {
+    "jest/globals": true
+  },
   "rules": {
     "@typescript-eslint/strict-boolean-expressions": "off",
     "@typescript-eslint/consistent-type-definitions": "off",
