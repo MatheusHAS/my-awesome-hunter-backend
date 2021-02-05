@@ -1,5 +1,5 @@
 import request from 'supertest'
-import app from '@/config/app'
+import app from '@/app'
 
 describe('Testing express server', () => {
   it('Unknown url should return 404', async () => {
