@@ -1,11 +1,6 @@
-const Tables = {
-  STATES: 'states',
-  CITIES: 'cities',
-}
-
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable(Tables.STATES, {
+    await queryInterface.createTable('states', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -25,17 +20,9 @@ module.exports = {
         type: Sequelize.STRING(2),
         unique: true,
       },
-      created_at: {
-        type: Sequelize.DATE,
-        allowNull: false,
-      },
-      updated_at: {
-        type: Sequelize.DATE,
-        allowNull: false,
-      },
     })
 
-    await queryInterface.createTable(Tables.CITIES, {
+    await queryInterface.createTable('cities', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -46,7 +33,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.INTEGER,
         references: {
-          model: Tables.CITIES,
+          model: 'cities',
           key: 'id',
         },
       },
@@ -58,19 +45,11 @@ module.exports = {
         allowNull: false,
         type: Sequelize.FLOAT,
       },
-      created_at: {
-        type: Sequelize.DATE,
-        allowNull: false,
-      },
-      updated_at: {
-        type: Sequelize.DATE,
-        allowNull: false,
-      },
     })
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable(Tables.STATES)
-    await queryInterface.dropTable(Tables.CITIES)
+    await queryInterface.dropTable('states')
+    await queryInterface.dropTable('cities')
   },
 }
