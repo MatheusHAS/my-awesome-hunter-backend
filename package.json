@@ -9,7 +9,10 @@
     "build": "tsc --project ./",
     "test": "NODE_ENV=test jest --passWithNoTests --no-cache --runInBand",
     "test:ci": "npm test -- --coverage",
-    "eslint": "eslint . --fix"
+    "eslint": "eslint . --fix",
+    "migration:generate": "sequelize migration:generate",
+    "migration:apply": "sequelize db:migrate",
+    "migration:undo": "sequelize db:migrate:undo"
   },
   "repository": {
     "type": "git",
