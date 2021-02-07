@@ -1,20 +1,22 @@
-module.exports = {
-  up: async (queryInterface, Sequelize) => {
+import { DataTypes, QueryInterface } from 'sequelize'
+
+export default {
+  up: async (queryInterface: QueryInterface) => {
     await queryInterface.createTable('technologies', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER,
+        type: DataTypes.INTEGER,
       },
       name: {
         allowNull: false,
-        type: Sequelize.STRING(100),
+        type: DataTypes.STRING(100),
       },
     })
   },
 
-  down: async (queryInterface, Sequelize) => {
+  down: async (queryInterface: QueryInterface) => {
     await queryInterface.dropTable('technologies')
   },
 }

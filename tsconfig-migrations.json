@@ -1,0 +1,11 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./compiled",
+    "paths": {
+      "@/*": ["*"]
+    }
+  },
+  "include": ["src/database/migrations", "src/database/seeders", "src/models", ".sequelizerc"],
+  "exclude": ["node_modules", "**/*.spec.ts"]
+}

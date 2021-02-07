@@ -1,15 +1,17 @@
+import { QueryInterface, DataTypes } from 'sequelize'
+
 module.exports = {
-  up: async (queryInterface, Sequelize) => {
+  up: async (queryInterface: QueryInterface) => {
     await queryInterface.createTable('candidates_technologies', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER,
+        type: DataTypes.INTEGER,
       },
       candidate_id: {
         allowNull: false,
-        type: Sequelize.INTEGER,
+        type: DataTypes.INTEGER,
         references: {
           model: 'candidates',
           key: 'id',
@@ -17,7 +19,7 @@ module.exports = {
       },
       technology_id: {
         allowNull: false,
-        type: Sequelize.INTEGER,
+        type: DataTypes.INTEGER,
         references: {
           model: 'technologies',
           key: 'id',
@@ -25,13 +27,13 @@ module.exports = {
       },
       is_main_tech: {
         allowNull: false,
-        type: Sequelize.BOOLEAN,
-        default: false,
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
       },
     })
   },
 
-  down: async (queryInterface, Sequelize) => {
+  down: async (queryInterface: QueryInterface) => {
     await queryInterface.dropTable('candidates_technologies')
   },
 }

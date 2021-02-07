@@ -1,23 +1,25 @@
-module.exports = {
-  up: async (queryInterface, Sequelize) => {
+import { DataTypes, QueryInterface } from 'sequelize'
+
+export default {
+  up: async (queryInterface: QueryInterface) => {
     await queryInterface.createTable('states', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER,
+        type: DataTypes.INTEGER,
       },
       name: {
         allowNull: false,
-        type: Sequelize.STRING(40),
+        type: DataTypes.STRING(40),
       },
       name_prefix: {
         allowNull: false,
-        type: Sequelize.STRING(25),
+        type: DataTypes.STRING(25),
       },
       subdivision: {
         allowNull: false,
-        type: Sequelize.STRING(2),
+        type: DataTypes.STRING(2),
         unique: true,
       },
     })
@@ -27,28 +29,32 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER,
+        type: DataTypes.INTEGER,
+      },
+      name: {
+        allowNull: false,
+        type: DataTypes.STRING(90),
       },
       state_id: {
         allowNull: false,
-        type: Sequelize.INTEGER,
+        type: DataTypes.INTEGER,
         references: {
-          model: 'cities',
+          model: 'states',
           key: 'id',
         },
       },
       latitude: {
         allowNull: false,
-        type: Sequelize.FLOAT,
+        type: DataTypes.FLOAT,
       },
       longitude: {
         allowNull: false,
-        type: Sequelize.FLOAT,
+        type: DataTypes.FLOAT,
       },
     })
   },
 
-  down: async (queryInterface, Sequelize) => {
+  down: async (queryInterface: QueryInterface) => {
     await queryInterface.dropTable('states')
     await queryInterface.dropTable('cities')
   },

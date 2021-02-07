@@ -1,15 +1,17 @@
-module.exports = {
-  up: async (queryInterface, Sequelize) => {
+import { DataTypes, QueryInterface } from 'sequelize'
+
+export default {
+  up: async (queryInterface: QueryInterface) => {
     await queryInterface.createTable('candidates', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER,
+        type: DataTypes.INTEGER,
       },
       city_id: {
         allowNull: false,
-        type: Sequelize.INTEGER,
+        type: DataTypes.INTEGER,
         references: {
           model: 'cities',
           key: 'id',
@@ -17,11 +19,11 @@ module.exports = {
       },
       name: {
         allowNull: true,
-        type: Sequelize.STRING(100),
+        type: DataTypes.STRING(100),
       },
       experience: {
         allowNull: false,
-        type: Sequelize.ENUM,
+        type: DataTypes.ENUM,
         values: [
           '0-1 years',
           '1-2 years',
@@ -39,17 +41,17 @@ module.exports = {
         ],
       },
       created_at: {
-        type: Sequelize.DATE,
+        type: DataTypes.DATE,
         allowNull: false,
       },
       updated_at: {
-        type: Sequelize.DATE,
+        type: DataTypes.DATE,
         allowNull: false,
       },
     })
   },
 
-  down: async (queryInterface, Sequelize) => {
+  down: async (queryInterface: QueryInterface) => {
     await queryInterface.dropTable('candidates')
   },
 }
