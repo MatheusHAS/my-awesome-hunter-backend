@@ -1,10 +1,24 @@
-import { Sequelize } from 'sequelize/types'
+import { Model, DataTypes } from 'sequelize'
+import Database from '@/database'
 
-export default (sequelize: Sequelize, DataTypes: any) => {
-  const State = sequelize.define('State', {
+class State extends Model {
+  public id!: number
+  public name!: string
+  public name_prefix!: string
+  public subdivision!: string
+}
+
+State.init(
+  {
     name: DataTypes.STRING,
     name_prefix: DataTypes.STRING,
     subdivision: DataTypes.STRING,
-  })
-  return State
-}
+  },
+  {
+    sequelize: Database.connection,
+    modelName: 'State',
+    timestamps: false,
+  }
+)
+
+export default State

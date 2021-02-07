@@ -8,10 +8,12 @@
     "types": ["node", "jest"],
     "esModuleInterop": true,
     "resolveJsonModule": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
     "allowJs": true,
     "paths": {
       "@/*": ["*"]
     }
   },
-  "include": ["src", ".sequelizerc"]
+  "include": ["src"]
 }
