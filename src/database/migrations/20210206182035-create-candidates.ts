@@ -42,11 +42,11 @@ export default {
       },
       created_at: {
         type: DataTypes.DATE,
-        allowNull: false,
+        allowNull: true,
       },
       updated_at: {
         type: DataTypes.DATE,
-        allowNull: false,
+        allowNull: true,
       },
     })
   },

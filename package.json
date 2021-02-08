@@ -4,15 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node dist/src/server.js",
+    "start": "node dist/server.js",
     "dev": "nodemon -r tsconfig-paths/register src/server.ts",
-    "build": "tsc --project ./",
+    "build": "tsc --project ./ && tscpaths -p tsconfig.json -s ./src -o ./dist",
     "build:migrations": "./build-migrations.sh",
     "test": "NODE_ENV=test jest --passWithNoTests --no-cache --runInBand",
     "test:ci": "npm test -- --coverage",
     "eslint": "eslint . --fix",
     "migration:generate": "sequelize migration:generate",
     "migration:apply": "npm run build:migrations && sequelize db:migrate --config './compiled/config/database.js' --migrations-path './compiled/database/migrations'",
+    "migration:apply:seed": "npm run build && node dist/database/import-seeds.js",
     "migration:undo": "npm run build:migrations && sequelize db:migrate:undo --config './compiled/config/database.js' --migrations-path './compiled/database/migrations'"
   },
   "repository": {
@@ -30,11 +31,13 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "lusca": "^1.6.1",
+    "module-alias": "^2.2.2",
     "pg": "^8.5.1",
     "reflect-metadata": "^0.1.13",
     "sequelize": "^6.5.0",
     "sequelize-cli": "^6.2.0",
-    "ts-node": "^9.1.1"
+    "ts-node": "^9.1.1",
+    "tscpaths": "0.0.9"
   },
   "devDependencies": {
     "@commitlint/cli": "^11.0.0",
@@ -51,6 +54,7 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-promise": "^4.2.1",
+    "faker": "^5.3.1",
     "git-commit-msg-linter": "^3.0.0",
     "husky": "^4.3.8",
     "jest": "^26.6.3",
