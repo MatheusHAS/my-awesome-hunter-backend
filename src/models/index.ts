@@ -1,3 +1,5 @@
 export { default as State } from './State'
 export { default as City } from './City'
 export { default as Candidate } from './Candidate'
+export { default as Technology } from './Technology'
+export { default as CandidateTechnology } from './CandidateTechnology'

@@ -11,6 +11,15 @@ class Candidate extends Model {
 
   static associate(models: any) {
     this.belongsTo(models.City, { foreignKey: 'city_id' })
+    // this.()
+    console.log(models)
+    // this.hasMany(models.CandidateTechnology, {
+    //   as: 'technologies',
+    // })
+    // this.belongsToMany(models.CandidateTechnology, {
+    //   through: 'candidates_technologies',
+    // })
+    // this.belongsTo(models.Technology)
   }
 }
 
@@ -42,13 +51,20 @@ Candidate.init(
         '12+ years',
       ],
     },
+    // technologies: {
+    //   type: DataTypes.INTEGER,
+    //   references: {
+    //     model: 'candidates_technologies',
+    //     key: 'candidate_id',
+    //   },
+    // },
     created_at: DataTypes.DATE,
     updated_at: DataTypes.DATE,
   },
   {
     sequelize: Database.connection,
     modelName: 'Candidate',
-    timestamps: false,
+    timestamps: true,
   }
 )
 
