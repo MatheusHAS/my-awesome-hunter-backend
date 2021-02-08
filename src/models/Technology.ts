@@ -1,22 +1,17 @@
-import { Model, DataTypes } from 'sequelize'
-import Database from '@/database'
+import { Table, Model, DataType, Column, PrimaryKey } from 'sequelize-typescript'
 
+@Table({
+  modelName: 'Technology',
+  timestamps: false,
+})
 class Technology extends Model {
+  @PrimaryKey
+  @Column(DataType.INTEGER)
   public id!: number
-  public name!: string
 
-  static associate(models: any) {}
+  @Column(DataType.STRING)
+  public name!: string
 }
 
-Technology.init(
-  {
-    name: DataTypes.STRING,
-  },
-  {
-    sequelize: Database.connection,
-    modelName: 'Technology',
-    timestamps: false,
-  }
-)
-
 export default Technology
+export { Technology }

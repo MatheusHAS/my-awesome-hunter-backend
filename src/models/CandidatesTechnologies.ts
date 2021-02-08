@@ -1,42 +1,29 @@
-import { Model, DataTypes } from 'sequelize'
-import Database from '@/database'
+import { Table, Model, DataType, Column, PrimaryKey, ForeignKey, BelongsTo, HasOne } from 'sequelize-typescript'
+import { Technology, Candidate } from '@/models'
 
+@Table({
+  modelName: 'CandidatesTechnology',
+  timestamps: false,
+})
 class CandidatesTechnologies extends Model {
+  @PrimaryKey
+  @Column(DataType.INTEGER)
   public id!: number
+
+  @ForeignKey(() => Candidate)
+  @Column(DataType.INTEGER)
   public candidate_id!: number
+
+  @ForeignKey(() => Technology)
+  @Column(DataType.INTEGER)
   public technology_id!: number
 
-  static associate(models: any) {
-    console.log(models)
-    this.belongsTo(models.Candidate, { foreignKey: 'candidate_id' })
-    this.belongsTo(models.Technology, { foreignKey: 'technology_id' })
-  }
+  @HasOne(() => Technology, 'id')
+  public technology: Technology
+
+  @HasOne(() => Candidate, 'id')
+  public candidate: Candidate
 }
 
-CandidatesTechnologies.init(
-  {
-    candidate_id: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: 'candidates',
-        key: 'id',
-      },
-    },
-    technology_id: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: 'technologies',
-        key: 'id',
-      },
-    },
-  },
-  {
-    sequelize: Database.connection,
-    modelName: 'CandidatesTechnology',
-    timestamps: false,
-  }
-)
-
-CandidatesTechnologies.associate(Database.connection.models)
-
 export default CandidatesTechnologies
+export { CandidatesTechnologies }

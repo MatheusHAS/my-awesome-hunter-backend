@@ -1,24 +1,24 @@
-import { Model, DataTypes } from 'sequelize'
-import Database from '@/database'
+// import { Model, DataTypes } from 'sequelize'
+import { Table, Model, DataType, Column, PrimaryKey } from 'sequelize-typescript'
 
+@Table({
+  modelName: 'State',
+  timestamps: false,
+})
 class State extends Model {
+  @PrimaryKey
+  @Column(DataType.INTEGER)
   public id!: number
+
+  @Column(DataType.STRING)
   public name!: string
+
+  @Column(DataType.STRING)
   public name_prefix!: string
+
+  @Column(DataType.STRING)
   public subdivision!: string
 }
 
-State.init(
-  {
-    name: DataTypes.STRING,
-    name_prefix: DataTypes.STRING,
-    subdivision: DataTypes.STRING,
-  },
-  {
-    sequelize: Database.connection,
-    modelName: 'State',
-    timestamps: false,
-  }
-)
-
 export default State
+export { State }

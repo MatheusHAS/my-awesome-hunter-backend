@@ -1,38 +1,36 @@
-import { Model, DataTypes } from 'sequelize'
-import Database from '@/database'
-
+import { Column, Model, DataType, Table, PrimaryKey, ForeignKey, BelongsTo } from 'sequelize-typescript'
+import { State } from '@/models'
+@Table({
+  modelName: 'City',
+  timestamps: false,
+})
 class City extends Model {
-  public id!: number
-  public name!: string
-  public state_id!: number
-  public latitude!: number
-  public longitude!: number
+  @PrimaryKey
+  @Column(DataType.NUMBER)
+  public id: number
 
-  static associate(models: any) {
-    this.belongsTo(models.State, { foreignKey: 'state_id' })
-  }
+  @Column(DataType.STRING)
+  public name: string
+
+  @ForeignKey(() => State)
+  @Column(DataType.NUMBER)
+  public state_id: number
+
+  @Column(DataType.FLOAT)
+  public latitude: number
+
+  @Column(DataType.FLOAT)
+  public longitude: number
+
+  @BelongsTo(() => State, 'state_id')
+  public state: State
+
+  // static associate(models: any) {
+  //   this.belongsTo(models.State, { foreignKey: 'state_id' })
+  // }
 }
 
-City.init(
-  {
-    name: DataTypes.STRING,
-    state_id: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: 'states',
-        key: 'id',
-      },
-    },
-    latitude: DataTypes.FLOAT,
-    longitude: DataTypes.FLOAT,
-  },
-  {
-    sequelize: Database.connection,
-    modelName: 'City',
-    timestamps: false,
-  }
-)
-
-City.associate(Database.connection.models)
+// City.associate(Database.connection.models)
 
 export default City
+export { City }

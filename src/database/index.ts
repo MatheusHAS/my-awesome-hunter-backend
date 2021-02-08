@@ -1,10 +1,11 @@
-import Sequelize from 'sequelize'
+import { Sequelize } from 'sequelize-typescript'
 import databaseConfig from '@/config/database'
+import { City, State, Technology, Candidate, CandidatesTechnologies } from '@/models'
 
 type IEnvironment = 'development' | 'test' | 'production'
 
 class Database {
-  public connection: Sequelize.Sequelize
+  public connection: Sequelize
   public environment: IEnvironment
 
   constructor() {
@@ -13,7 +14,10 @@ class Database {
   }
 
   init(): void {
-    this.connection = new Sequelize.Sequelize(databaseConfig[this.environment.toString()])
+    this.connection = new Sequelize({
+      ...databaseConfig[this.environment.toString()],
+      models: [City, State, Technology, Candidate, CandidatesTechnologies],
+    })
   }
 }
 
