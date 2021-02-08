@@ -3,6 +3,8 @@ import Database from '@/database'
 import statesList from '@/data/states.json'
 import citiesList from '@/data/cities.json'
 import candidatesList from '@/data/candidates.json'
+import candidatesTechnologiesList from '@/data/candidates-technologies.json'
+import technologiesList from '@/data/technologies.json'
 
 class ImportSeedsController {
   queryInterface: QueryInterface
@@ -45,6 +47,8 @@ class ImportSeedsController {
       await this.runImport('states', statesList)
       await this.runImport('cities', citiesList)
       await this.runImport('candidates', candidatesList)
+      await this.runImport('technologies', technologiesList)
+      await this.runImport('candidates_technologies', candidatesTechnologiesList)
       this.connection.close()
       console.log('--- FINISHED ---')
     } catch (exception) {
