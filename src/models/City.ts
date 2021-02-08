@@ -24,13 +24,7 @@ class City extends Model {
 
   @BelongsTo(() => State, 'state_id')
   public state: State
-
-  // static associate(models: any) {
-  //   this.belongsTo(models.State, { foreignKey: 'state_id' })
-  // }
 }
-
-// City.associate(Database.connection.models)
 
 export default City
 export { City }

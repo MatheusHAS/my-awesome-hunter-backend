@@ -46,19 +46,6 @@ class Candidate extends Model {
 
   @HasMany(() => CandidatesTechnologies)
   public technologies: CandidatesTechnologies[]
-
-  // static associate(models: any) {
-  //   this.belongsTo(models.City, { foreignKey: 'city_id' })
-  //   // this.()
-  //   console.log(models)
-  //   // this.hasMany(models.CandidateTechnology, {
-  //   //   as: 'technologies',
-  //   // })
-  //   // this.belongsToMany(models.CandidateTechnology, {
-  //   //   through: 'candidates_technologies',
-  //   // })
-  //   // this.belongsTo(models.Technology)
-  // }
 }
 
 export default Candidate
