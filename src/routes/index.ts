@@ -1,9 +1,12 @@
-import express, { Router } from 'express'
+import { Express } from 'express'
+import { HealthCheckRouter } from '@/routes/health-check.route'
+import { CandidateRouter } from '@/routes/candidates.route'
 
-const routes: Router = express.Router()
+const setupRoutes = (app: Express) => {
+  app.use('/', HealthCheckRouter())
+  app.use((req, res) => {
+    res.status(404).send('Nothing here...')
+  })
+}
 
-routes.get('/', (req, res) => {
-  return res.send({ test: true })
-})
-
-export default routes
+export default setupRoutes

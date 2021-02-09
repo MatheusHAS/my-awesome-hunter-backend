@@ -1,11 +1,30 @@
-import { Sequelize } from 'sequelize/types'
+import { Column, Model, DataType, Table, PrimaryKey, ForeignKey, BelongsTo } from 'sequelize-typescript'
+import { State } from '@/models'
+@Table({
+  modelName: 'City',
+  timestamps: false,
+})
+class City extends Model {
+  @PrimaryKey
+  @Column(DataType.NUMBER)
+  public id: number
 
-export default (sequelize: Sequelize, DataTypes: any) => {
-  const City = sequelize.define('City', {
-    name: DataTypes.STRING,
-    state_id: DataTypes.INTEGER,
-    latitude: DataTypes.FLOAT,
-    longitude: DataTypes.FLOAT,
-  })
-  return City
+  @Column(DataType.STRING)
+  public name: string
+
+  @ForeignKey(() => State)
+  @Column(DataType.NUMBER)
+  public state_id: number
+
+  @Column(DataType.FLOAT)
+  public latitude: number
+
+  @Column(DataType.FLOAT)
+  public longitude: number
+
+  @BelongsTo(() => State, 'state_id')
+  public state: State
 }
+
+export default City
+export { City }
