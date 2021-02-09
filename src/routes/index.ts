@@ -1,31 +1,12 @@
-import express, { Router } from 'express'
-import { City, State, Technology, Candidate, CandidatesTechnologies } from '@/models'
+import { Express } from 'express'
+import { HealthCheckRouter } from '@/routes/health-check.route'
+import { CandidateRouter } from '@/routes/candidates.route'
 
-const routes: Router = express.Router()
+const setupRoutes = (app: Express) => {
+  app.use('/', HealthCheckRouter())
+  app.use((req, res) => {
+    res.status(404).send('Nothing here...')
+  })
+}
 
-// routes.get('/city', async (req, res) => {
-//   const result = await City.findAll({
-//     include: State,
-//   })
-//   return res.send(result)
-// })
-
-// routes.get('/tech', async (req, res) => {
-//   const result = await Technology.findAll()
-//   return res.send(result)
-// })
-
-// routes.get('/candidates', async (req, res) => {
-//   const result = await Candidate.findAll({
-//     include: [
-//       City,
-//       {
-//         model: CandidatesTechnologies,
-//         include: [Technology],
-//       },
-//     ],
-//   })
-//   return res.send(result)
-// })
-
-export default routes
+export default setupRoutes

@@ -3,7 +3,7 @@ import express from 'express'
 import * as dotenv from 'dotenv'
 import bodyParser from 'body-parser'
 import lusca from 'lusca'
-import routes from '@/routes'
+import setupRoutes from '@/routes'
 
 dotenv.config({ path: join(__dirname, '..', '.env') })
 
@@ -16,10 +16,10 @@ class AppController {
 
   middlewares() {
     this.express.use(express.json())
-    this.express.use(routes)
     this.express.use(bodyParser.json())
     this.express.use(bodyParser.urlencoded({ extended: true }))
     this.express.use(lusca.xssProtection(true))
+    setupRoutes(this.express)
   }
 }
 
