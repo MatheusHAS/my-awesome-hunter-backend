@@ -9,6 +9,7 @@ module.exports = {
   // coveragePathIgnorePatterns: [
   //   "/node_modules/"
   // ],
+  testTimeout: 60000,
 
   testEnvironment: 'node',
   transform: {
