@@ -1,0 +1,7 @@
+[
+  { "id": 33922, "city_id": 4853, "is_remote": false, "experience_min": 2, "experience_max": 4 },
+  { "id": 33916, "city_id": 4207, "is_remote": false, "experience_min": 0, "experience_max": 2 },
+  { "id": 33870, "city_id": null, "is_remote": true, "experience_min": 2, "experience_max": 4 },
+  { "id": 33869, "city_id": null, "is_remote": true, "experience_min": 2, "experience_max": 4 },
+  { "id": 33868, "city_id": 1509, "is_remote": false, "experience_min": 0, "experience_max": 2 }
+]

@@ -5,6 +5,7 @@ import citiesList from '@/data/cities.json'
 import candidatesList from '@/data/candidates.json'
 import candidatesTechnologiesList from '@/data/candidates-technologies.json'
 import technologiesList from '@/data/technologies.json'
+import jobsList from '@/data/jobs.json'
 
 class ImportSeedsController {
   queryInterface: QueryInterface
@@ -49,6 +50,7 @@ class ImportSeedsController {
       await this.runImport('candidates', candidatesList)
       await this.runImport('technologies', technologiesList)
       await this.runImport('candidates_technologies', candidatesTechnologiesList)
+      await this.runImport('jobs', jobsList)
       this.connection.close()
       console.log('--- FINISHED ---')
     } catch (exception) {

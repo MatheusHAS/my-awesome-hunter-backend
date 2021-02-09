@@ -7,29 +7,38 @@ const cities = require('../src/data/cities.json')
 const fs = require('fs')
 
 const Regex = {
-  findCityGroup: /(?<cidade>.+)\s-\s(.+)/,
+  findCityGroup: /(?<city>.+)\s-\s(.+)/,
+  findExperienceGroup: /((\d+){0,2}-)?(?<experience>\d+){0,2}/,
 }
 
-const getCityIdByCityName = (name) => {
-  const city = cities.find((city) => city.name.toLowerCase() === name.toLowerCase())
-  if (city) {
-    return cities.indexOf(city) + 1
+const getCityIdByCityName = (cityFullName) => {
+  const result = Regex.findCityGroup.exec(cityFullName)
+  if (result && result.groups) {
+    const { city } = result.groups
+    const cityFind = cities.find((cityItem) => cityItem.name.toLowerCase() === city.toLowerCase())
+    if (cityFind) {
+      return cities.indexOf(cityFind) + 1
+    }
+  }
+  return 0
+}
+
+const getExperienceTime = (experienceTime) => {
+  const result = Regex.findExperienceGroup.exec(experienceTime)
+  if (result && result.groups) {
+    const { experience } = result.groups
+    return parseInt(experience)
   }
   return 0
 }
 
 const result = challangeJson.candidates.map((candidate) => {
   const { id, city, experience } = candidate
-  let city_id = 0
-  const result = Regex.findCityGroup.exec(city)
-  if (result && result.groups) {
-    const { cidade } = result.groups
-    city_id = getCityIdByCityName(cidade)
-  }
+  const city_id = getCityIdByCityName(city)
   return {
     id,
     city_id,
-    experience,
+    experience: getExperienceTime(experience),
     name: faker.fake('{{name.firstName}} {{name.lastName}}'),
   }
 })
