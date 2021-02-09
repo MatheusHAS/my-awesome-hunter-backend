@@ -9,11 +9,9 @@ import {
   ForeignKey,
   BelongsTo,
   AllowNull,
-  BelongsToMany,
   HasMany,
 } from 'sequelize-typescript'
 import { City, CandidatesTechnologies } from '@/models'
-import Technology from './Technology'
 
 @Table({
   modelName: 'Candidate',
