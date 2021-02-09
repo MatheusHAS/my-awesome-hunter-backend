@@ -2,13 +2,9 @@ module.exports = {
   bail: true,
   clearMocks: true,
 
-  // collectCoverage: false,
-
   coverageDirectory: 'coverage',
-  // An array of regexp pattern strings used to skip coverage collection
-  // coveragePathIgnorePatterns: [
-  //   "/node_modules/"
-  // ],
+
+  coveragePathIgnorePatterns: ['/node_modules/', 'index.ts'],
   testTimeout: 60000,
 
   testEnvironment: 'node',
