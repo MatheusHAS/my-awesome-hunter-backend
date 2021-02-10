@@ -8,30 +8,31 @@ import {
   UpdatedAt,
   ForeignKey,
   BelongsTo,
-  AllowNull,
   HasMany,
 } from 'sequelize-typescript'
-import { City, CandidatesTechnologies } from '@/models'
+import { City, JobsTechnologies } from '@/models'
 
 @Table({
-  modelName: 'Candidate',
+  modelName: 'Job',
   timestamps: true,
 })
-class Candidate extends Model {
+class Job extends Model {
   @PrimaryKey
   @Column(DataType.INTEGER)
   public id!: number
-
-  @AllowNull
-  @Column(DataType.STRING)
-  public name!: string
 
   @ForeignKey(() => City)
   @Column(DataType.INTEGER)
   public city_id!: number
 
-  @Column(DataType.STRING)
-  public experience!: number
+  @Column(DataType.INTEGER)
+  public experience_min!: number
+
+  @Column(DataType.INTEGER)
+  public experience_max!: number
+
+  @Column(DataType.BOOLEAN)
+  public is_remote!: boolean
 
   @CreatedAt
   public readonly created_at!: Date
@@ -42,9 +43,9 @@ class Candidate extends Model {
   @BelongsTo(() => City)
   public city: City
 
-  @HasMany(() => CandidatesTechnologies)
-  public technologies: CandidatesTechnologies[]
+  @HasMany(() => JobsTechnologies)
+  public technologies: JobsTechnologies[]
 }
 
-export default Candidate
-export { Candidate }
+export default Job
+export { Job }

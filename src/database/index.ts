@@ -1,6 +1,6 @@
 import { Sequelize } from 'sequelize-typescript'
 import databaseConfig from '@/config/database'
-import { City, State, Technology, Candidate, CandidatesTechnologies } from '@/models'
+import { City, State, Technology, Candidate, CandidatesTechnologies, Job, JobsTechnologies } from '@/models'
 
 type IEnvironment = 'development' | 'test' | 'production'
 
@@ -16,7 +16,7 @@ class Database {
   init(): void {
     this.connection = new Sequelize({
       ...databaseConfig[this.environment.toString()],
-      models: [City, State, Technology, Candidate, CandidatesTechnologies],
+      models: [City, State, Technology, Candidate, CandidatesTechnologies, Job, JobsTechnologies],
     })
   }
 }
