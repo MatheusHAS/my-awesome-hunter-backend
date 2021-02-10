@@ -24,6 +24,8 @@
     "@typescript-eslint/no-extraneous-class": "off",
     "@typescript-eslint/prefer-readonly": "off",
     "@typescript-eslint/consistent-type-assertions": "off",
+    "@typescript-eslint/no-base-to-string": "off",
+    "@typescript-eslint/naming-convention": "off",
     "no-prototype-builtins": "off",
     "no-useless-return": "off",
     "prettier/prettier": "error"
