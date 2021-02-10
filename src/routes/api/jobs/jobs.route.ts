@@ -1,6 +1,6 @@
-import { IJobFinderFilter } from './../services/job-finder.service'
 import { Router, Request, Response, NextFunction } from 'express'
-import { JobFinderService } from '@/services/job-finder.service'
+import { IJobFinderFilter } from '@/interfaces'
+import { JobFinderService } from '@/services'
 import { City, Job } from '@/models'
 
 export const JobRouter = () =>

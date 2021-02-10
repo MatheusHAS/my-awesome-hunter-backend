@@ -1,18 +1,6 @@
 import { Job, Candidate, City, CandidatesTechnologies } from '@/models'
-import { FindOptions, Op, Sequelize } from 'sequelize'
-
-export interface IJobFinderFilter {
-  techs?: any[]
-  experience_min?: number
-  experience_max?: number
-}
-
-interface IJobFinderService {
-  job: Job
-  maxListSize?: number
-  offset?: number
-  filter?: IJobFinderFilter
-}
+import { FindOptions, Sequelize } from 'sequelize'
+import { IJobFinderFilter, IJobFinderService } from '@/interfaces'
 
 const options = {
   candidateTechCount: 'candidate_tech_count',
@@ -40,21 +28,6 @@ class JobFinderService {
     })
   }
 
-  // private sortFieldsOfCandidate(candidateA: Candidate, candidateB: Candidate) {
-  //   if (
-  //     candidateA.getDataValue(options.distance) > candidateB.getDataValue(options.distance) &&
-  //     candidateA.getDataValue(options.candidateTechCount) > candidateB.getDataValue(options.candidateTechCount)
-  //   ) {
-  //     return -1
-  //   } else if (
-  //     candidateA.getDataValue(options.distance) < candidateB.getDataValue(options.distance) &&
-  //     candidateA.getDataValue(options.candidateTechCount) < candidateB.getDataValue(options.candidateTechCount)
-  //   ) {
-  //     return 1
-  //   }
-  //   return 0
-  // }
-
   private orderCandidates(candidates: Candidate[]) {
     let result = candidates
     console.log(this.filter)
@@ -63,7 +36,6 @@ class JobFinderService {
       let hasExperienceTime = true
       if (this.filter) {
         if (this.filter.techs) {
-          // eslint-disable-next-line @typescript-eslint/naming-convention
           const techsCount = cand.technologies.filter(({ technology_id }: any) =>
             this.filter.techs.includes(technology_id)
           )
