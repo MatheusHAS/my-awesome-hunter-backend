@@ -31,7 +31,7 @@ class Candidate extends Model {
   public city_id!: number
 
   @Column(DataType.STRING)
-  public experience!: string
+  public experience!: number
 
   @CreatedAt
   public readonly created_at!: Date

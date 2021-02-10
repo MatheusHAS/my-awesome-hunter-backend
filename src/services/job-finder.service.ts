@@ -46,8 +46,7 @@ class JobFinderService {
         if (this.filter.experience_min || this.filter.experience_max) {
           const min = this.filter.experience_min || 0
           const max = this.filter.experience_max || 0
-          const candidateExp = parseInt(cand.get('experience'))
-          if (candidateExp < min || candidateExp > max) {
+          if (cand.experience < min || cand.experience > max) {
             hasExperienceTime = false
           }
         }
