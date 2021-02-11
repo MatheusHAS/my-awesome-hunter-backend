@@ -1,6 +1,6 @@
 import { Router, Request, Response, NextFunction } from 'express'
 import { IJobFinderFilter } from '@/interfaces'
-import { JobFinderService } from '@/services'
+import { JobSearchService } from '@/services'
 import { City, Job, State } from '@/models'
 
 export const JobRouter = () =>
@@ -42,7 +42,7 @@ export const JobRouter = () =>
           if (experience_max) {
             filter.experience_max = parseInt(experience_max as string)
           }
-          const jobFinder = new JobFinderService({
+          const jobFinder = new JobSearchService({
             job: jobItem,
             filter,
           })

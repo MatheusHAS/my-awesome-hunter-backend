@@ -1,1 +1,1 @@
-export * from './job-finder.service'
+export * from './job-search.service'

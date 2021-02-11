@@ -1,13 +1,8 @@
-import { Job, Candidate, City, CandidatesTechnologies } from '@/models'
+import { Job, Candidate, City, CandidatesTechnologies, Technology } from '@/models'
 import { FindOptions, Sequelize } from 'sequelize'
 import { IJobFinderFilter, IJobFinderService } from '@/interfaces'
 
-const options = {
-  candidateTechCount: 'candidate_tech_count',
-  distance: 'distance',
-}
-
-class JobFinderService {
+class JobSearchService {
   private job: Job = null
   private maxListSize: number = 100
   private offset: number = 0
@@ -23,9 +18,7 @@ class JobFinderService {
 
   async getCandidates() {
     const candidates = await Candidate.findAll(this.getOptions())
-    return this.orderCandidates(candidates).map((cand: Candidate) => {
-      return { experience: cand.experience }
-    })
+    return this.orderCandidates(candidates)
   }
 
   private orderCandidates(candidates: Candidate[]) {
@@ -102,6 +95,7 @@ class JobFinderService {
         },
         {
           model: CandidatesTechnologies,
+          // include: [Technology],
           attributes: ['technology_id'],
         },
       ],
@@ -109,5 +103,5 @@ class JobFinderService {
   }
 }
 
-export default JobFinderService
-export { JobFinderService }
+export default JobSearchService
+export { JobSearchService }
