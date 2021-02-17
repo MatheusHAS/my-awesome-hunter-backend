@@ -1,9 +1,4 @@
-import { Router, Request, Response, NextFunction } from 'express'
-import { Candidate } from '@/models'
+import { Router } from 'express'
+import { CandidateController } from '@/controllers'
 
-export const CandidateRouter = () =>
-  Router().get('/candidates', (req: Request, res: Response, next: NextFunction) => {
-    Candidate.findAll()
-      .then((candidatesList: Candidate[]) => res.json(candidatesList))
-      .catch(next)
-  })
+export const CandidateRouter = () => Router().get('/candidates', CandidateController.index)
