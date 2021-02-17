@@ -1,5 +1,19 @@
 # my-awesome-hunter-backend
 
+> Project to study
+
+# Preview:
+
+`http://my-awesome-hunter-backend.herokuapp.com/api/v1/jobs`
+
+# Using:
+
+- Typescript
+- Migrations with Sequelize
+- Custom import migrations using typescript
+- Testing with Jest
+- CI\CD with Heroku
+
 # Endpoints
 
 ## Cities
